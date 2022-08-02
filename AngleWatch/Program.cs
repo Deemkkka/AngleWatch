@@ -48,18 +48,24 @@ namespace AngleWatch
 
             // расчет
 
+            // Найдите угол минутной стрелки с 12 часов
+            double minuteAngle = (360 / 60) * timeWatch.minute;
+
+            //найти смещение часовой стрелки от времени
+            double hourBias = timeWatch.hour % 12;
+            hourBias += (1f / 60) * timeWatch.minute;
+
+            // Найдите угол часовой стрелки с 12 часов.
+
+            double hourAngle = (360 / 12) * hourBias; 
 
 
-            
-            
-            
-            
 
 
 
         }
 
-      
+
 
         private static void Greet()
         {
