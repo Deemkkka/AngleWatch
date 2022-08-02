@@ -10,13 +10,28 @@ namespace AngleWatch
     {
 
         static TimeWatch timeWatch;
+        static Angle angle;
         static void Main(string[] args)
         {
             Greet();
             CalculateAngle();
+            PrintResult();
             Console.ReadLine();
         }
 
+        static private void PrintResult()
+        {
+            var angleResult = CalculateResult();
+            Console.WriteLine($"Время:{timeWatch.hour.ToString("00")}:{timeWatch.minute.ToString("00")}");
+            Console.WriteLine($"Угол между часовой и минутной стрелкой: {angleResult.ToString("N1")} °C");
+        }
+
+        static private double CalculateResult()
+        {
+            double result = Math.Abs(angle.angleHour - angle.angleMinute);
+            result = result > 180 ? result - 360 : result;
+            return result;
+        }
 
         private static void CalculateAngle()
         {
@@ -57,10 +72,9 @@ namespace AngleWatch
 
             // Найдите угол часовой стрелки с 12 часов.
 
-            double hourAngle = (360 / 12) * hourBias; 
+            double hourAngle = (360 / 12) * hourBias;
 
-
-
+            angle = new Angle(hourAngle, minuteAngle);        
 
 
         }
