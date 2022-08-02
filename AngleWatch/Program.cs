@@ -44,8 +44,17 @@ namespace AngleWatch
                 string inputTime = Console.ReadLine();
                 string[] times = inputTime.Split(':');
 
-                timeWatch.hour = Convert.ToInt32(times[0]);
-                timeWatch.minute = Convert.ToInt32(times[1]);
+                try
+                {
+                    timeWatch.hour = Convert.ToInt32(times[0]);
+                    timeWatch.minute = Convert.ToInt32(times[1]);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Необходимо ввести корректно в формате 'hour:minute', пример '12:00'");
+                    continue;
+                }
                 if (timeWatch.hour > 24 || timeWatch.hour < 0)
                 {
                     Console.WriteLine("Неверное время, укажите часы корректно от 0 до 24");
